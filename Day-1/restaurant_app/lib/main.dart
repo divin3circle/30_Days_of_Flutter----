@@ -1,125 +1,129 @@
+// main method, program entry
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+void main(List<String> args) {
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  //In Flutter, most of the things we're going to be dealing with are
+  //widgets. Widgets are the building blocks of a Flutter app's UI.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+  State<StatefulWidget> createState() {
+    return _MyAppState();
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
+class _MyAppState extends State<MyApp> {
+  //_MyAppState is a private class, only available in this file
+  final List<String> restaurants = [
+    'McDonald\'s',
+    'Burger King',
+    'KFC',
+    'Subway Crackers',
+    'Pizza Hut',
+    'Domino\'s Pizza',
+    'Starbucks Nairobi',
+    'Dunkin Donuts',
+    'Taco Bell',
+    'Wendys',
+    'Popeyes',
+    'Chick-fil-A',
+    'Panera Bread',
+    'Chipotle',
+    'Sonic Drive-In',
+    'Dairy Queen',
+    'Arbys',
+    'Five Guys',
+    'Panda Express',
+    'Little Caesars',
+    'Jimmy Johns',
+    'Whataburger',
+    'In-N-Out Burger',
+    'Jack in the Box',
+    'Carl\'s Jr.',
+    'Hardee\'s',
+    'White Castle',
+    'Checkers',
+    'Raising Cane\'s',
+    'Zaxby\'s',
+    'Bojangles',
+    'Culver\'s',
+    'Long John Silver\'s',
+    'Del Taco',
+    'El Pollo Loco',
+    'Tim Hortons',
+    'A&W',
+    'Jersey Mike\'s',
+    'Firehouse Subs',
+    'Jason\'s Deli',
+    'Qdoba',
+    'Moe\'s Southwest Grill',
+    'Noodles & Company',
+    'Papa Murphy\'s',
+    'Round Table Pizza',
+    'Marco\'s Pizza',
+    'Hungry Howie\'s',
+    'Blaze Pizza',
+    'MOD Pizza',
+    'Papa Gino\'s',
+    'Donatos Pizza',
+    'California Pizza Kitchen',
+    'Uno Pizzeria & Grill'
+  ];
+  int currentIndex = 5;
+  void updateIndex() {
+    final random = Random();
+    final index = random.nextInt(restaurants.length);
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    // TODO: implement build
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Maankuli Center',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          ),
         ),
+        body: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('What are you looking for?'),
+            Text(
+              restaurants[currentIndex],
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            TextButton(
+                onPressed: updateIndex,
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  textStyle: const TextStyle(color: Colors.white),
+                  padding: const EdgeInsets.all(16.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                child: const Text(
+                  'Next Restaurant',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                )),
+          ],
+        )),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
