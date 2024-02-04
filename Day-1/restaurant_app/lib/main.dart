@@ -73,7 +73,7 @@ class _MyAppState extends State<MyApp> {
     'California Pizza Kitchen',
     'Uno Pizzeria & Grill'
   ];
-  int currentIndex = 5;
+  int currentIndex = 99;
   void updateIndex() {
     final random = Random();
     final index = random.nextInt(restaurants.length);
@@ -98,11 +98,13 @@ class _MyAppState extends State<MyApp> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('What are you looking for?'),
-            Text(
-              restaurants[currentIndex],
-              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
+            if (currentIndex != 99)
+              Text(
+                restaurants[currentIndex],
+                style:
+                    const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
             const SizedBox(
               height: 30,
             ),
@@ -116,9 +118,9 @@ class _MyAppState extends State<MyApp> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
-                child: const Text(
-                  'Next Restaurant',
-                  style: TextStyle(
+                child: Text(
+                  currentIndex == 99 ? 'Find a Restaurant' : 'Next Restaurant',
+                  style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 )),
           ],
